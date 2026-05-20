@@ -33,6 +33,11 @@ function App() {
     setTask('');
   }
 
+  const handleDelete = (id: number) => {
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+  }
+
   return (
     <div>
       <h1 className="header">Todo List</h1>
@@ -49,8 +54,9 @@ function App() {
       <ul>
         {todos.map((todo) => ( 
           <li key={todo.id}>
-            <input type="checkbox"/>
+            <input type="checkbox" />
             {todo.task}
+            <button className="delete" onClick={() => handleDelete(todo.id)}>delete</button>
           </li>
         ))}
       </ul>
