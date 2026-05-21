@@ -3,7 +3,7 @@ import {useState, useEffect } from 'react'
 type Todo = { id: number; task: string; completed: boolean; };
 
 export function useLocalStorage(key: string, initialValue: Todo[]): [Todo[], React.Dispatch<React.SetStateAction<Todo[]>>]{
-    const [value, setValue] = useState<T>(() => { 
+    const [value, setValue] = useState<Todo[]>(() => { 
         try {
             const saved = localStorage.getItem(key);
             return saved ? JSON.parse(saved) : initialValue;
