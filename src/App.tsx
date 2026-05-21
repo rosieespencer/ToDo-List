@@ -6,7 +6,7 @@ function App() {
   type Todo = { id: number; task: string; completed: boolean; }; // Todo list item shape
   const [task, setTask] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [deleteHovered, setDeleteHovered] = useState(false); 
+  const [hoveredDelId, setHoveredDelId] = useState<number | null>(null); 
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ function App() {
   const handleDelete = (id: number) => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
+    setHoveredDelId(null);
   };
 
   const handleCheckedBox = (id: number) => {
@@ -59,15 +60,15 @@ function App() {
               <span 
                 className="task" 
                 style={{ textDecoration: todo.completed ? 'line-through' : 'none', 
-                color: deleteHovered? 'rgb(161, 59, 59)': (todo.completed ? '#4fa0ff' : 'black'),
+                color: hoveredDelId == todo.id ? 'rgb(161, 59, 59)': (todo.completed ? '#4fa0ff' : 'black'),
                 }}>
                 {todo.task}
               </span>
               <button 
                 className="delete" 
                 onClick={() => handleDelete(todo.id)}
-                onMouseEnter={() => setDeleteHovered(true)}
-                onMouseLeave={() => setDeleteHovered(false)}>
+                onMouseEnter={() => setHoveredDelId(todo.id)}
+                onMouseLeave={() => setHoveredDelId(null)}>
                 x
               </button>
             </li>
