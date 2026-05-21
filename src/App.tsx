@@ -1,11 +1,12 @@
 import './styles.css'
 import marker from './assets/markers.png'
 import { useState } from 'react'
+import { useLocalStorage } from './useLocalStorage';
 
 function App() {
-  type Todo = { id: number; task: string; completed: boolean; }; // Todo list item shape
+  type Todo = { id: number; task: string; completed: boolean; };
   const [task, setTask] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useLocalStorage('my-todo-tasks', [])
   const [hoveredDelId, setHoveredDelId] = useState<number | null>(null); 
 
   const handleSubmit = (e: React.SubmitEvent) => {
