@@ -43,7 +43,8 @@ img {
     background: white;
     text-align: center;
     border: 2vh solid #b38c7e;
-    width: 40vw;
+    width: 30vw;
+    min-width: 320px;
     min-height: 80vh;
 }
 
