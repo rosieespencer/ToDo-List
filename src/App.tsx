@@ -1,10 +1,12 @@
+import './styles.css'
+import marker from './assets/markers.png'
 import { useState } from 'react'
 
 function App() {
-  // Todo list item shape
-  type Todo = { id: number; task: string; completed: boolean; };
+  type Todo = { id: number; task: string; completed: boolean; }; // Todo list item shape
   const [task, setTask] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [deleteHovered, setDeleteHovered] = useState(false); 
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ function App() {
   const handleDelete = (id: number) => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
-  }
+  };
 
   const handleCheckedBox = (id: number) => {
     setTodos(todos.map(todo =>
@@ -32,33 +34,46 @@ function App() {
   };
 
   return (
-    <div>
-      <h1 className="header">Todo List</h1>
-      <form className="add-todo-form" onSubmit={handleSubmit}>
-        <input
-          type="text" 
-          value={task} 
-          onChange={(e) => setTask(e.target.value)}
-          placeholder="Add your task..."
-        />
-        <button className="submit" type="submit">add</button>
-      </form>
-
-      <ul>
-        {todos.map((todo) => ( 
-          <li key={todo.id}>
-            <input className="checkbox" 
-              type="checkbox" 
-              checked={todo.completed}
-              onChange={() => handleCheckedBox(todo.id)}
-            />
-            <span className="task" style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
-              {todo.task}
-            </span>
-            <button className="delete" onClick={() => handleDelete(todo.id)}>delete</button>
-          </li>
-        ))}
-      </ul>
+    <div className="frame">
+      <div className="space"></div>
+      <img src={marker} alt="a blue and black whiteboard marker" />
+      <div className="list-area">
+        <h1 className="header">Todo List</h1>
+        <form className="add-todo-form" onSubmit={handleSubmit}>
+          <input className="placeholder-spot"
+            type="text" 
+            value={task} 
+            onChange={(e) => setTask(e.target.value)}
+            placeholder="Add your task..."
+          />
+          <button className="submit" type="submit">add</button>
+        </form>
+        <ul>
+          {todos.map((todo) => ( 
+            <li key={todo.id}>
+              <input className="checkbox" 
+                type="checkbox" 
+                checked={todo.completed}
+                onChange={() => handleCheckedBox(todo.id)}
+              />
+              <span 
+                className="task" 
+                style={{ textDecoration: todo.completed ? 'line-through' : 'none', 
+                color: deleteHovered? 'rgb(161, 59, 59)': (todo.completed ? '#4fa0ff' : 'black'),
+                }}>
+                {todo.task}
+              </span>
+              <button 
+                className="delete" 
+                onClick={() => handleDelete(todo.id)}
+                onMouseEnter={() => setDeleteHovered(true)}
+                onMouseLeave={() => setDeleteHovered(false)}>
+                x
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

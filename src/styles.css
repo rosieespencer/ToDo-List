@@ -1,0 +1,142 @@
+
+:root{
+    --bg-color: #c4dffa;
+    --board-border: #b38c7e;
+    --blue-marker: #4fa0ff;
+    --input-bg: #dadada;
+}
+
+body {
+    background-color: #c4dffa;
+}
+
+.space {
+    min-width: 10vw;
+}
+
+.frame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5vw;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    font-family: 'Open Sans', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+form, .place-holder-spot, .submit, .delete {
+    font-family: 'Open Sans', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+img {
+    scale: 80%;
+} 
+
+.header {
+    font-family: cursive;
+    text-transform: uppercase;
+}
+
+.list-area {
+    background: white;
+    text-align: center;
+    border: 2vh solid #b38c7e;
+    width: 40vw;
+    min-height: 80vh;
+}
+
+.add-todo-form {
+    background: #dadada;
+    border-radius: 10vw;
+    height: 4vh;
+    width: 70%;
+    height: 5vh;
+    margin-left: 15%;
+    margin-right: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.placeholder-spot {
+    margin-left: 4%;
+    width: 80%;
+    background: none;
+    border: none;
+}
+
+.submit {
+    margin-right: 4%;
+    background: white;
+    height: 80%;
+    border: 1% solid black;
+    border-radius: 10vw;
+}
+
+ul {
+    margin-top: 5vh;
+}
+
+li {
+    list-style-type: none;
+    text-align: left;
+    margin-right: 20%;
+    margin-bottom: 4%;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+
+.delete {
+    margin-left: auto;
+    background: none;
+    border: 1% solid black;
+    border-radius: 10vw;
+}
+
+.checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border: 4px solid #4fa0ff;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox::after {
+    content: "";
+    width: 6px;
+    height: 12px;
+    border: solid #4fa0ff;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg) scale(0);
+    transition: 120ms transform ease-in-out;
+    margin-bottom: 2px;
+}
+
+.checkbox:checked::after {
+    transform: rotate(45deg) scale(1);
+}
+
+.placeholder-spot:focus {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.submit:hover {
+    background: #4fa0ff;
+    color: white;
+}
+
+.delete:hover {
+    background: rgb(161, 59, 59);
+    color: white;
+}
